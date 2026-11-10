@@ -1,0 +1,19 @@
+[
+ {"id":"R001","name":"Brute force on router login","sev":"high","mitre":"T1110","type":"threshold",
+  "match":{"cat":"auth","act":"fail"},"group_by":"src","window":300,"count":5},
+ {"id":"R002","name":"Login success after repeated failures","sev":"critical","mitre":"T1078","type":"sequence",
+  "first":{"cat":"auth","act":"fail"},"then":{"cat":"auth","act":"ok"},"group_by":"src","window":600,"first_count":3},
+ {"id":"R003","name":"Router admin login from the internet","sev":"critical","mitre":"T1133","type":"threshold",
+  "match":{"cat":"auth","act":"ok","src_scope":"public"},"group_by":"src","window":60,"count":1},
+ {"id":"R004","name":"Port scan from the internet","sev":"low","mitre":"T1046","type":"distinct",
+  "match":{"cat":"fw","src_scope":"public"},"distinct":"dport","group_by":"src","window":60,"count":15},
+ {"id":"R005","name":"Port scan from a LAN device","sev":"high","mitre":"T1046","type":"distinct",
+  "match":{"cat":"fw","src_scope":"private"},"distinct":"dport","group_by":"src","window":60,"count":15},
+ {"id":"R006","name":"New device on the network","sev":"medium","mitre":"T1200","type":"new_asset"},
+ {"id":"R007","name":"DNS query flood from one client","sev":"medium","mitre":"T1071.004","type":"threshold",
+  "match":{"cat":"dns"},"group_by":"src","window":60,"count":300},
+ {"id":"R008","name":"Random-looking domains (possible DGA malware)","sev":"low","mitre":"T1568.002","type":"threshold",
+  "match":{"cat":"dns","dga":1},"group_by":"src","window":300,"count":3},
+ {"id":"R009","name":"Threat-intel (IOC) match","sev":"high","mitre":"T1071","type":"ioc",
+  "fields":["src","dst","domain"]}
+]

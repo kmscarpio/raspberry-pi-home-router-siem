@@ -1,0 +1,7 @@
+{
+  "allowed_sources": [],
+  "web_user": "admin",
+  "web_password": "changeme",
+  "ntfy_url": "",
+  "retention_days": 14
+}

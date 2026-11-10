@@ -1,0 +1,3 @@
+# One IP or domain per line (subdomains of listed domains also match). Add your own feeds here.
+evil-c2.example
+198.51.100.66
